@@ -18,6 +18,10 @@ const Main = ({match, history}) => {
         .then(json => {alert(JSON.stringify(json));history.push('/')})
         .catch(e=>console.log(e))
     }
+
+    const testFn = () => {
+        document.getElementById('mainContent').style.width = '50vw'
+    }
     
     React.useEffect(() => {
         fetch(`http://127.0.0.1:8000/api/posts/${match.params.id}/`, {
@@ -36,7 +40,8 @@ const Main = ({match, history}) => {
         <input type='button' value='홈으로' onClick={()=>{history.push('/')}}/>
         <input type='button' value='수정하기' onClick={()=>{history.push(`/edit/${match.params.id}`)}}/>
         <input type='button' value='삭제하기' onClick={() => window.confirm('삭제하시겠습니까?')?Delete():undefined}/>
-        <div style={{fontFamily:"GodoM", width:'100vw', height:'100vh', marginTop:'100px', backgroundColor:'gray'}}>
+        <input type='button' value='창크기변경' onClick={() => testFn()}/>
+        <div id='mainContent' style={{fontFamily:"GodoM", width:'100vw', height:'100vh', marginTop:'100px', backgroundColor:'gray'}}>
             <div style={{fontSize:55, fontFamily:'GodoB'}}>
                 {title}
             </div>
